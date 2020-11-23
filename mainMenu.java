@@ -1,5 +1,6 @@
 public class mainMenu {
     public static void main(String[] args){
-        System.printLn("Hello world");
+        
+        System.out.println("Hello world");
     }
 }
