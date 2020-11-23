@@ -1,7 +1,7 @@
 /**
  * This works as the main menu for starting and saving games as well as creating and deleting profiles.
  *
- * @author Charlie Haden
+ * @author Charles Haden
  * @author Mathew Clarke
  */
 public class MainMenu {
@@ -41,6 +41,7 @@ public class MainMenu {
      * @return the game state from the save file
      */
     public String[] loadBoard() {
+        return(null);
 
     }
 
@@ -57,7 +58,7 @@ public class MainMenu {
      * @return leaderboard array
      */
     public String[] displayLeaderBoard() {
-
+        return(null);
     }
 
     /**
