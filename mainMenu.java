@@ -4,11 +4,11 @@
  * @author Charlie Haden
  * @author Mathew Clarke
  */
-public class mainMenu {
+public class MainMenu {
     private String[] currentGame;
     private String[] presetBoards;
 
-    public mainMenu() {
+    public MainMenu() {
 
     }
 
