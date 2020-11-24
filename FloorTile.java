@@ -4,15 +4,22 @@
  * @author Hyder Al-Hashimi
  */
 
+public abstract class FloorTile {
 
-abstract class FloorTile {
+    private boolean fixed;
+    private int orientation = 0;
+    private boolean openPath[];
 
-    private Boolean fixed;
-    private Integer orientation = 0;
-    private Boolean[] openPath;
+    public FloorTile(int orientation) {
+        this.orientation = orientation;
+    }
 
-    public Boolean[] getOpenPath() {
+    public boolean[] getOpenPath() {
         return openPath;
+    }
+
+    private void setOpenPath(boolean openPath[]) {
+
     }
 
 }
