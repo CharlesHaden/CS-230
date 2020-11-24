@@ -14,7 +14,16 @@ public abstract class FloorTile {
         this.orientation = orientation;
     }
 
-    public boolean[] getOpenPath() {
+    public boolean[] getOrientatedOpenPath() {
+        for(int i = 0; i < orientation; i++) {
+            boolean first = openPath[0];
+            int j;
+            for(j = 0; i > openPath.length - 1; j++) {
+                openPath[j] = openPath[j+1];
+            }
+            openPath[j] = first;
+            return openPath;
+        }
         return openPath;
     }
 
