@@ -12,7 +12,6 @@ public abstract class FloorTile {
 
     public FloorTile(int orientation) {
         this.orientation = orientation;
-        this.openPath = openPath;
     }
 
     public boolean[] getOrientatedOpenPath() {
@@ -28,8 +27,8 @@ public abstract class FloorTile {
         return openPath;
     }
 
-    private void setOpenPath(boolean openPath[]) {
-
+    public String getType(){
+        return "Floor";
     }
 
 }
