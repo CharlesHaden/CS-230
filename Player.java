@@ -75,10 +75,10 @@ public class Player {
 	public void drawTile() {
 		Tile tile = Board.getTile();
 		
-		if (tile.getType().equals("Straight") || tile.getType().equals("Corner") || tile.getType().equals("T-Shaped")) {
+		if (tile.getTileType().equals("Floor")) {
 			Board.insertTile(tile);
 		} 
-		else if (tile.getType().equals("Ice") || tile.getType().equals("Fire") || tile.getType().equals("Double")  || tile.getType().equals("Backtrack")) {
+		else if (tile.getTileType().equals("Action")) {
 			playerHand.add(tile);
 		}
 	}
@@ -88,7 +88,7 @@ public class Player {
 		
 		//Displays the action tiles in the players hand
 		for (Tile tiles : playerHand) {
-			System.out.println(tiles.getType());
+			System.out.println(tiles.getActionTileType());
 		}
 		
 		Scanner input = new Scanner(System.in);
@@ -101,7 +101,7 @@ public class Player {
 			//Goes through each tile in the players hand to see if they have that tile to play
 			for (Tile tiles : playerHand) {
 				//If they have the tile to play then it is removed from their hand and played
-				if (tiles.getType().equals(tileType)) {
+				if (tiles.getActionTileType().equals(tileType)) {
 					playerHand.remove(tiles);
 					Board.playActionTile(tileType);
 					played = true;
