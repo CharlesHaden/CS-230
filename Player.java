@@ -3,6 +3,7 @@
  * @author Lewis Hotchkiss
  */
 
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -51,8 +52,8 @@ public class Player {
 		return lastMoves;
 	}
 	
-	public void setLastMoves(int[][] lastMove) {
-		this.lastMoves = lastMove;
+	public void setLastMoves(int[][] lastMoves) {
+		this.lastMoves = lastMoves;
 	}
 	
 	public int[] getPlayerPosition() {
@@ -124,10 +125,7 @@ public class Player {
 		lastMoves[0][1] = y;
 	}
 	
-	public void makeMove() {
-		//player chooses direction to move in - needs to return which key pressed?
-		//player position change 
-		
+	public void makeMove(KeyEvent e) {
 		/**
 		 * if player chooses right
 		 * 		check if there is a clear path    (if FloorTile.openPath?)
@@ -141,10 +139,26 @@ public class Player {
 		 * 		check if there is a clear path
 		 * 		y = y + 1   playerPosition[1] = playerPosition[1] + 1;
 		 * 
-		 * if player chooses up
+		 * if player chooses down
 		 * 		check if there is a clear path
 		 * 		y = y - 1   playerPosition[1] = playerPosition[1] - 1;
 		 */
+		
+		int keyCode = e.getKeyCode();
+	    switch (keyCode) { 
+	        case KeyEvent.VK_UP:
+	        	playerPosition[1] = playerPosition[1] + 1;
+	            break;
+	        case KeyEvent.VK_DOWN:
+	        	playerPosition[1] = playerPosition[1] - 1;
+	            break;
+	        case KeyEvent.VK_LEFT:
+	        	playerPosition[0] = playerPosition[0] - 1;
+	            break;
+	        case KeyEvent.VK_RIGHT :
+	        	playerPosition[0] = playerPosition[0] + 1;
+	            break;
+	     }
 
 	}
 	
