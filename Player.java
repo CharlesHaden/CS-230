@@ -1,3 +1,8 @@
+/**
+ * Player Class
+ * @author Lewis Hotchkiss
+ */
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -6,10 +11,10 @@ public class Player {
 	private String orientation;
 	private int score;
 	private int[][] lastMove;
-	private int[][] playerPosition;
+	private int[] playerPosition;
 	private static ArrayList<Tile> playerHand = new ArrayList<Tile>();
 	
-	public Player(int playerNum, String orientation, int score, int[][] lastMove, int[][] playerPosition, ArrayList<Tile> playerHand) {
+	public Player(int playerNum, String orientation, int score, int[][] lastMove, int[] playerPosition, ArrayList<Tile> playerHand) {
 		this.playerNum = playerNum;
 		this.orientation = orientation;
 		this.score = score;
@@ -50,19 +55,15 @@ public class Player {
 		this.lastMove = lastMove;
 	}
 	
-	public int[][] getPlayerPosition() {
+	public int[] getPlayerPosition() {
 		return playerPosition;
 	}
 	
-	public void setPlayerPosition(int[][] playerPosition) {
+	public void setPlayerPosition(int[] playerPosition) {
 		this.playerPosition = playerPosition;
 	}
 	
 	public ArrayList<Tile> getPlayerHand() {
-		//Tile fireTile = new Tile("Fire",false,false,false,"North"); FOR TESTING PURPOSES
-		//playerHand.add(fireTile);
-		//for (Tile tile2 : playerHand) {
-		//	System.out.println(tile2.getType());
 		return playerHand;
 	}
 	
@@ -73,35 +74,43 @@ public class Player {
 	public void drawTile() {
 		Tile tile = Board.getTile();
 		
-		// if tile is floor than play tile
 		if (tile.getType().equals("Straight") || tile.getType().equals("Corner") || tile.getType().equals("T-Shaped")) {
 			Board.insertTile(tile);
-		}
-		// else if tile is action then add to hand
-		if (tile.getType().equals("Ice") || tile.getType().equals("Fire") || tile.getType().equals("Double")  || tile.getType().equals("Backtrack")) {
-			playerHand.add(tile); //Add tile to players hand
+		} 
+		else if (tile.getType().equals("Ice") || tile.getType().equals("Fire") || tile.getType().equals("Double")  || tile.getType().equals("Backtrack")) {
+			playerHand.add(tile);
 		}
 	}
 	
 	public static void playTile(Tile tile) {
-		//Play action tile
-		//Allow player to choose tile from arraylist
+		Boolean played = false;
+		
+		//Displays the action tiles in the players hand
 		for (Tile tiles : playerHand) {
 			System.out.println(tiles.getType());
 		}
 		
 		Scanner input = new Scanner(System.in);
-		String tileType = input.next();
-		System.out.println("Choose action tile to play: ");
 		
-		for (Tile tiles : playerHand) {
-			if (tiles.getType().equals(tileType)) {
-				playerHand.remove(tiles); //Need to set tile to played?
-				Board.playActionTile(tileType);
-			} else {
-				System.out.println("Cant play that action tile"); //Make into error checking (do while loop?)
+		do {
+			//Gets user to choose action tile
+			String tileType = input.next();
+			System.out.println("Choose action tile to play: ");
+		
+			//Goes through each tile in the players hand to see if they have that tile to play
+			for (Tile tiles : playerHand) {
+				//If they have the tile to play then it is removed from their hand and played
+				if (tiles.getType().equals(tileType)) {
+					playerHand.remove(tiles);
+					Board.playActionTile(tileType);
+					played = true;
+				//If they haven't got that tile to play then they will have to choose again
+				} else {
+					System.out.println("Cant play that action tile");
+					played = false;
+				}
 			}
-		}
+		} while (played = false);
 		
 		input.close();
 	}
@@ -111,5 +120,7 @@ public class Player {
 		//player chooses direction to move in - needs to return which key pressed?
 		//player position change 
 		//check if surrounding tiles are frozen
+		
 	}
+	
 }
