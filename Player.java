@@ -126,37 +126,40 @@ public class Player {
 	}
 	
 	public void makeMove(KeyEvent e) {
-		/**
-		 * if player chooses right
-		 * 		check if there is a clear path    (if FloorTile.openPath?)
-		 * 		x = x + 1   playerPosition[0] = playerPosition[0] + 1;
-		 * 
-		 * if player chooses left
-		 * 		check if there is a clear path
-		 * 		x = x - 1   playerPosition[0] = playerPosition[0] - 1;
-		 * 
-		 * if player chooses up
-		 * 		check if there is a clear path
-		 * 		y = y + 1   playerPosition[1] = playerPosition[1] + 1;
-		 * 
-		 * if player chooses down
-		 * 		check if there is a clear path
-		 * 		y = y - 1   playerPosition[1] = playerPosition[1] - 1;
-		 */
-		
+		//Do while player not moved
+		Boolean[] currentTileOpenPath = Tile.getOpenPath();
 		int keyCode = e.getKeyCode();
 	    switch (keyCode) { 
 	        case KeyEvent.VK_UP:
-	        	playerPosition[1] = playerPosition[1] + 1;
+	        	//if current tiles open path = {X,TRUE,X,X}
+	        	//and above tiles open path = {TRUE,X,X,X} 
+	        	//where {up,down,left,right}
+	        	Boolean[] upTileOpenPath = Tile.getOpenPath();
+	        	if ((currentTileOpenPath[0] = true) && (upTileOpenPath[1] = true)) {
+	        		//y = y + 1
+		        	playerPosition[1] = playerPosition[1] + 1;
+	        	}
 	            break;
 	        case KeyEvent.VK_DOWN:
-	        	playerPosition[1] = playerPosition[1] - 1;
+	        	Boolean[] downTileOpenPath = Tile.getOpenPath();
+	        	if ((currentTileOpenPath[1] = true) && (downTileOpenPath[0] = true)) {
+	        		//y = y - 1
+		        	playerPosition[1] = playerPosition[1] - 1;
+	        	}
 	            break;
 	        case KeyEvent.VK_LEFT:
-	        	playerPosition[0] = playerPosition[0] - 1;
+	        	Boolean[] leftTileOpenPath = Tile.getOpenPath();
+	        	if ((currentTileOpenPath[2] = true) && (leftTileOpenPath[3] = true)) {
+	        		//x = x - 1
+		        	playerPosition[0] = playerPosition[0] - 1;
+	        	}
 	            break;
-	        case KeyEvent.VK_RIGHT :
-	        	playerPosition[0] = playerPosition[0] + 1;
+	        case KeyEvent.VK_RIGHT:
+	        	Boolean[] rightTileOpenPath = Tile.getOpenPath();
+	        	if ((currentTileOpenPath[3] = true) && (leftTileOpenPath[2] = true)) {
+	        		//x = x + 1
+		        	playerPosition[0] = playerPosition[0] + 1;
+	        	}
 	            break;
 	     }
 
