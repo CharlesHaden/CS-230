@@ -10,4 +10,8 @@ public class StraightTile extends FloorTile {
         super(orientation);
         openPath =  new boolean[] {true, false, true, false};
     }
+
+    public String getFloorTileType() {
+        return "Straight";
+    }
 }

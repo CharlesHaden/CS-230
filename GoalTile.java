@@ -10,4 +10,8 @@ public class GoalTile extends FloorTile {
         super(orientation);
         openPath =  new boolean[] {true, true, true, true};
     }
+
+    public String getFloorTileType() {
+        return "Goal";
+    }
 }

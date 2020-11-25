@@ -4,7 +4,7 @@
  * @author Hyder Al-Hashimi
  */
 
-public abstract class FloorTile {
+public abstract class FloorTile extends Tile {
 
     private boolean fixed;
     private int orientation = 0;
@@ -36,5 +36,7 @@ public abstract class FloorTile {
     public String getTileType(){
         return "Floor";
     }
+
+    public abstract String getFloorTileType();
 
 }

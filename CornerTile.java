@@ -10,4 +10,8 @@ public class CornerTile extends FloorTile {
         super(orientation);
         openPath =  new boolean[] {false, true, true, false};
     }
+
+    public String getFloorTileType() {
+        return "Corner";
+    }
 }

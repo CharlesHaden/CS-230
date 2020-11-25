@@ -10,4 +10,8 @@ public class TshapedTile extends FloorTile {
         super(orientation);
         openPath =  new boolean[] {false, true, true, true};
     }
+
+    public String getFloorTileType() {
+        return "Tshaped";
+    }
 }
