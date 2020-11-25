@@ -116,11 +116,28 @@ public class Player {
 	}
 	
 	
-	public void makeMove() {
+	public void makeMove(int x, int y) {
 		//player chooses direction to move in - needs to return which key pressed?
 		//player position change 
-		//check if surrounding tiles are frozen
 		
+		/**
+		 * if player chooses right
+		 * 		check if there is a clear path    (if FloorTile.openPath?)
+		 * 		x = x + 1   playerPosition[0] = playerPosition[0] + 1;
+		 * 
+		 * if player chooses left
+		 * 		check if there is a clear path
+		 * 		x = x - 1   playerPosition[0] = playerPosition[0] - 1;
+		 * 
+		 * if player chooses up
+		 * 		check if there is a clear path
+		 * 		y = y + 1   playerPosition[1] = playerPosition[1] + 1;
+		 * 
+		 * if player chooses up
+		 * 		check if there is a clear path
+		 * 		y = y - 1   playerPosition[1] = playerPosition[1] - 1;
+		 */
+
 	}
 	
 }
