@@ -1,6 +1,7 @@
 /**
  *
  *
+ * @author Nim Man
  * @author Hyder Al-Hashimi
  */
 
@@ -13,6 +14,7 @@ public abstract class FloorTile extends Tile {
     public FloorTile(int orientation) {
         this.orientation = orientation;
         this.fixed = false;
+        openPath = setOpenPath();
     }
 
     public FloorTile(int orientation, boolean fixed) {
@@ -20,7 +22,7 @@ public abstract class FloorTile extends Tile {
         this.fixed = fixed;
     }
 
-    public boolean[] getOrientatedOpenPath() {
+    public boolean[] setOpenPath() {
         for(int i = 0; i < orientation; i++) {
             boolean first = openPath[0];
             int j;
@@ -30,6 +32,10 @@ public abstract class FloorTile extends Tile {
             openPath[j] = first;
             return openPath;
         }
+        return openPath;
+    }
+
+    public boolean[] getOpenPath(){
         return openPath;
     }
 
