@@ -6,6 +6,6 @@
 
 public abstract class Tile {
 
-    public abstract String getType();
+    public abstract String getTileType();
 
 }
