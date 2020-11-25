@@ -29,7 +29,7 @@ public class MainMenu {
     }
 
     /**
-     * Saves the current game state to txt file
+     * Saves the current game state 22222222222222222to txt file
      */
     public void saveBoard() {
 
