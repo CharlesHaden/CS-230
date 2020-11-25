@@ -156,7 +156,7 @@ public class Player {
 	            break;
 	        case KeyEvent.VK_RIGHT:
 	        	Boolean[] rightTileOpenPath = Tile.getOpenPath();
-	        	if ((currentTileOpenPath[3] = true) && (leftTileOpenPath[2] = true)) {
+	        	if ((currentTileOpenPath[3] = true) && (rightTileOpenPath[2] = true)) {
 	        		//x = x + 1
 		        	playerPosition[0] = playerPosition[0] + 1;
 	        	}
