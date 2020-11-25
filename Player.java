@@ -132,7 +132,7 @@ public class Player {
 		//Boolean[] currentTileOpenPath = Tile.getOpenPath();
 		int keyCode = e.getKeyCode();
 	    switch (keyCode) { 
-	        case KeyEvent.VK_UP:
+	        case KeyEvent.VK_UP:á
 	        	//if current tiles open path = {X,TRUE,X,X}
 	        	//and above tiles open path = {TRUE,X,X,X} 
 	        	//where {up,down,left,right}
