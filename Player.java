@@ -10,15 +10,15 @@ public class Player {
 	private int playerNum;
 	private String orientation;
 	private int score;
-	private int[][] lastMove;
+	private int[][] lastMoves;
 	private int[] playerPosition;
 	private static ArrayList<Tile> playerHand = new ArrayList<Tile>();
 	
-	public Player(int playerNum, String orientation, int score, int[][] lastMove, int[] playerPosition, ArrayList<Tile> playerHand) {
+	public Player(int playerNum, String orientation, int score, int[][] lastMoves, int[] playerPosition, ArrayList<Tile> playerHand) {
 		this.playerNum = playerNum;
 		this.orientation = orientation;
 		this.score = score;
-		this.lastMove = lastMove;
+		this.lastMoves = lastMoves;
 		this.playerPosition = playerPosition;
 		this.playerHand = playerHand;
 	}
@@ -47,12 +47,12 @@ public class Player {
 		this.score = score;
 	}
 	
-	public int[][] getLastMove() {
-		return lastMove;
+	public int[][] getLastMoves() {
+		return lastMoves;
 	}
 	
-	public void setLastMove(int[][] lastMove) {
-		this.lastMove = lastMove;
+	public void setLastMoves(int[][] lastMove) {
+		this.lastMoves = lastMove;
 	}
 	
 	public int[] getPlayerPosition() {
@@ -115,8 +115,16 @@ public class Player {
 		input.close();
 	}
 	
+	public void updateLastMoves(int x, int y) {
+		//changes one position ago to two positions ago
+		lastMoves[1][0] = lastMoves[0][0];
+		lastMoves[1][1] = lastMoves[0][1];
+		//sets x,y one position ago
+		lastMoves[0][0] = x;
+		lastMoves[0][1] = y;
+	}
 	
-	public void makeMove(int x, int y) {
+	public void makeMove() {
 		//player chooses direction to move in - needs to return which key pressed?
 		//player position change 
 		
