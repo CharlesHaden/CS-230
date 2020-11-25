@@ -20,6 +20,7 @@ public abstract class FloorTile extends Tile {
     public FloorTile(int orientation, boolean fixed) {
         this.orientation = orientation;
         this.fixed = fixed;
+        openPath = setOpenPath();
     }
 
     public boolean[] setOpenPath() {
