@@ -8,22 +8,22 @@
 public abstract class FloorTile extends Tile {
 
     private boolean fixed;
-    private int orientation = 0;
+    private int orientation;
     protected boolean openPath[];
 
     public FloorTile(int orientation) {
         this.orientation = orientation;
         this.fixed = false;
-        openPath = setOpenPath();
+        setOpenPath();
     }
 
     public FloorTile(int orientation, boolean fixed) {
         this.orientation = orientation;
         this.fixed = fixed;
-        openPath = setOpenPath();
+        setOpenPath();
     }
 
-    public boolean[] setOpenPath() {
+    public void setOpenPath() {
         for(int i = 0; i < orientation; i++) {
             boolean first = openPath[0];
             int j;
@@ -31,9 +31,7 @@ public abstract class FloorTile extends Tile {
                 openPath[j] = openPath[j+1];
             }
             openPath[j] = first;
-            return openPath;
         }
-        return openPath;
     }
 
     public boolean[] getOpenPath(){
