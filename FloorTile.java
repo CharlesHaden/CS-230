@@ -10,6 +10,8 @@ public abstract class FloorTile extends Tile {
     private boolean fixed;
     private int orientation;
     protected boolean openPath[];
+    private boolean isFrozen = false;
+    private boolean isOnFire = false;
 
     public FloorTile(int orientation) {
         this.orientation = orientation;
@@ -40,6 +42,22 @@ public abstract class FloorTile extends Tile {
 
     public String getTileType(){
         return "Floor";
+    }
+
+    protected void setOnFire(boolean onFire){
+        this.isOnFire = onFire;
+    }
+
+    public boolean getOnFire(){
+        return isFrozen;
+    }
+
+    protected void setIsFrozen(boolean isFrozen){
+        this.isFrozen = isFrozen;
+    }
+
+    public boolean getIsFrozen(){
+        return isFrozen;
     }
 
     public abstract String getFloorTileType();

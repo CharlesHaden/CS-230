@@ -5,13 +5,13 @@
  * @author Hyder Al-Hashimi
 */
 
-public class IceTile extends actionTile<> {
+public class IceTile extends ActionTile<int[]> {
 
-    public void action() {
+    public void action(int[] chosenTile) {
 
     }
 
-    public boolean isPlayable() {
+    public boolean isPlayable(int[] chosenTile) {
         return true;
     }
 

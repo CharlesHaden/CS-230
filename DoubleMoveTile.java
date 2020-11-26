@@ -1,5 +1,3 @@
-import java.awt.event.KeyEvent;
-
 /**
  * 
  * 
@@ -7,16 +5,19 @@ import java.awt.event.KeyEvent;
  * @author Hyder Al-Hashimi
 */
 
-public class DoubleMoveTile extends actionTile<Player, KeyEvent> {
+public class DoubleMoveTile extends ActionTile<Player> {
 
-    public void action(Player player, KeyEvent e) {
-        if(isPlayable(player)){
-
+    public void action(Player player) {
+        if(isPlayable(player)) {
+            player.makeMove(); //need to add some event
         }
     } 
     
     public boolean isPlayable(Player player) {
-        return true;
+        if(player.canMove() == true) {
+            return true;
+        }
+        return false;
     }
 
     public String getActionTileType() {

@@ -5,9 +5,9 @@
  * @author Hyder Al-Hashimi
 */
 
-abstract class actionTile<T, R> extends Tile {
+abstract class ActionTile<T> extends Tile {
 
-    public abstract void action(T t, R r);
+    public abstract void action(T t);
 
     public abstract boolean isPlayable(T t);
 
