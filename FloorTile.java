@@ -7,6 +7,7 @@
 
 public abstract class FloorTile extends Tile {
 
+    private int state; // 0 for normal, 1 on fire, 2 frozen 
     private boolean fixed;
     private int orientation;
     protected boolean openPath[];
@@ -40,6 +41,14 @@ public abstract class FloorTile extends Tile {
 
     public String getTileType(){
         return "Floor";
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
     }
 
     public abstract String getFloorTileType();
