@@ -102,8 +102,8 @@ public class Player {
 			for (Tile tiles : playerHand) { //WARNING: may loop through and remove several tiles of same type
 				//If they have the tile to play then it is removed from their hand and played
 				if (tiles.getActionTileType().equals(tileType)) {
+					tiles.action();
 					playerHand.remove(tiles);
-					Board.playActionTile(tileType);
 					played = true;
 				//If they haven't got that tile to play then they will have to choose again
 				} else {
