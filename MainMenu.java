@@ -5,10 +5,12 @@
  * @author Mathew Clarke
  */
 
+import java.util.ArrayList;
 
 public class MainMenu {
     private String[] currentGame;
     private String[] presetBoards;
+    ArrayList<Profile> profileList = new ArrayList<Profile>();
 
     public MainMenu() {
 
@@ -65,10 +67,13 @@ public class MainMenu {
 
     /**
      * Creates a new profile
+     *
      */
-    public void newProfile() {
-
+    public void createProfile(String name){
+        Profile profile1 = new Profile(name);
+        profileList.add(profile1);
     }
+
 
     /**
      * deletes a profile
