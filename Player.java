@@ -73,7 +73,7 @@ public class Player {
 	}
 	
 	public void drawTile() {
-		Tile tile = Board.getTile();
+		Tile tile = Board.drawTile();
 		
 		if (tile.getTileType().equals("Floor")) {
 			Board.insertTile(tile);
@@ -127,7 +127,8 @@ public class Player {
 	
 	public void makeMove(KeyEvent e) {
 		//Do while player not moved
-		Tile currentTile = currentTile.getTile(playerPosition[0],playerPosition[1]);
+		//Tile currentTile = currentTile.getTile(playerPosition[0], playerPosition[1]);
+		Tile currentTile = Board.getTile(playerPosition[0], playerPosition[1]);
 		Boolean[] currentTileOpenPath = currentTile.getOpenPath();
 		//Boolean[] currentTileOpenPath = Tile.getOpenPath();
 		int keyCode = e.getKeyCode();
@@ -136,7 +137,7 @@ public class Player {
 	        	//if current tiles open path = {X,TRUE,X,X}
 	        	//and above tiles open path = {TRUE,X,X,X} 
 	        	//where {up,down,left,right}
-	        	Tile upTile = upTile.getTile(playerPosition[0],playerPosition[1] + 1);
+	        	Tile upTile = Board.getTile(playerPosition[0], playerPosition[1] + 1);
 	        	Boolean[] upTileOpenPath = upTile.getOpenPath();
 	        	if ((currentTileOpenPath[0] = true) && (upTileOpenPath[1] = true)) {
 	        		//y = y + 1
@@ -144,7 +145,7 @@ public class Player {
 	        	}
 	            break;
 	        case KeyEvent.VK_DOWN:
-	        	Tile downTile = downTile.getTile(playerPosition[0],playerPosition[1] - 1);
+	        	Tile downTile = Board.getTile(playerPosition[0], playerPosition[1] - 1);
 	        	Boolean[] downTileOpenPath = downTile.getOpenPath();
 	        	if ((currentTileOpenPath[1] = true) && (downTileOpenPath[0] = true)) {
 	        		//y = y - 1
@@ -152,7 +153,7 @@ public class Player {
 	        	}
 	            break;
 	        case KeyEvent.VK_LEFT:
-	        	Tile leftTile = leftTile.getTile(playerPosition[0] - 1,playerPosition[1]);
+	        	Tile leftTile = Board.getTile(playerPosition[0] - 1, playerPosition[1]);
 	        	Boolean[] leftTileOpenPath = leftTile.getOpenPath();
 	        	if ((currentTileOpenPath[2] = true) && (leftTileOpenPath[3] = true)) {
 	        		//x = x - 1
@@ -160,7 +161,7 @@ public class Player {
 	        	}
 	            break;
 	        case KeyEvent.VK_RIGHT:
-	        	Tile rightTile = rightTile.getTile(playerPosition[0] + 1,playerPosition[1]);
+	        	Tile rightTile = Board.getTile(playerPosition[0] + 1, playerPosition[1]);
 	        	Boolean[] rightTileOpenPath = rightTile.getOpenPath();
 	        	if ((currentTileOpenPath[3] = true) && (rightTileOpenPath[2] = true)) {
 	        		//x = x + 1
