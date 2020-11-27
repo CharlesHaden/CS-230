@@ -7,6 +7,8 @@
 
 public class FireTile extends ActionTile<int[]> {
 
+    private int turnPlayed;
+
     public void action(int[] chosenTile) {
         FloorTile[][] boardTiles = Board.getTileList();
         int col = chosenTile[0];
@@ -15,6 +17,7 @@ public class FireTile extends ActionTile<int[]> {
             for (int y = row - 1; y < row + 2; y++) {
                 //boardTiles[y][x].setOnFire(true);
                 Board.getTile((Board.getWidth()*y) + x).setOnFire(true);
+                setTurnPlayed();
             }
         }
     }
@@ -50,6 +53,9 @@ public class FireTile extends ActionTile<int[]> {
 
     public String getActionTileType() {
         return "Fire";
+    }
 
+    private void setTurnPlayed(){
+        this.turnPlayed = Game.getTurn();
     }
 }

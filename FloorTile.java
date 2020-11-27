@@ -54,11 +54,18 @@ public abstract class FloorTile extends Tile {
 
     protected void setIsFrozen(boolean isFrozen){
         this.isFrozen = isFrozen;
+        if (isFrozen) {
+            fixed = true;
+        } else {
+            fixed = false;
+        }
     }
 
     public boolean getIsFrozen(){
         return isFrozen;
     }
+
+
 
     public abstract String getFloorTileType();
 
