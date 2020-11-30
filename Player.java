@@ -125,10 +125,12 @@ public class Player {
 		lastMoves[0][1] = y;
 	}
 	
+	/**
+	 * Gets the arrow key pressed by the user and moves the player accordingly
+	 * @param e
+	 */
 	public void makeMove(KeyEvent e) {
 		boolean moved = false;
-		//Do while player not moved
-		//Tile currentTile = currentTile.getTile(playerPosition[0], playerPosition[1]);
 		Tile currentTile = Board.getTile(playerPosition[0], playerPosition[1]);
 		Boolean[] currentTileOpenPath = currentTile.getOpenPath();
 		
@@ -152,11 +154,21 @@ public class Player {
 		
 	}
 	
+	/**
+	 * Changes the players position to the new position
+	 * @param currentTileOpenPath Boolean array where {0,1,2,3} {UP,DOWN,LEFT,RIGHT}
+	 * @param x The x coordinate of the next tile
+	 * @param y The y coordinate of the next tile
+	 * @param currentPath The position of the boolean in the array {UP,DOWN,LEFT,RIGHT} of the current tile
+	 * @param nextPath The position of the boolean in the array {UP,DOWN,LEFT,RIGHT} of the next tile
+	 * @return Returns true if the player was able to move
+	 */
 	public boolean movePlayer(Boolean[] currentTileOpenPath, int x, int y, int currentPath, int nextPath) {
 		Boolean moved = false;
 		Tile nextTile = Board.getTile(x, y);
     	Boolean[] nextTileOpenPath = nextTile.getOpenPath();
 
+    	//If there is a clear path from the current tile to the next, and it is frozen or has a player, then player can move
     	if ((currentTileOpenPath[currentPath] = true) && (nextTileOpenPath[nextPath] = true)) {
     		if ((nextTile.getOnFire().equals(true)) || (checkForPlayers(x, y) == true)) {
     			moved = false;
@@ -169,21 +181,22 @@ public class Player {
 		return moved;
 	}
 	
+	/**
+	 * Will check if there is a player on any of the surrounding tiles
+	 * @param x The x coordinate of the next tile
+	 * @param y The y coordinate of the next tile
+	 * @return Returns true if there is a player on any surrounding tile
+	 */
 	public boolean checkForPlayers(int x, int y) {
 		boolean playerOnTile = false;
-		Player players[] = Board.getPlayers(); 
+		Player players[] = Game.getPlayers(); //Gets the array of players from the game class
 		int i;
   
         for (i = 0; i < players.length; i++) { 
         	int otherPlayerPosition[] = players[i].getPlayerPosition();
-        	if ((otherPlayerPosition[0] == x && otherPlayerPosition[1] == y + 1) ||
-        			(otherPlayerPosition[0] == x && otherPlayerPosition[1] == y - 1) ||
-        			(otherPlayerPosition[0] == x + 1 && otherPlayerPosition[1] == y) ||
-        			(otherPlayerPosition[0] == x - 1 && otherPlayerPosition[1] == y)) {
-        		
+        	if ((otherPlayerPosition[0] == x && otherPlayerPosition[1] == y)) {
         		playerOnTile = true;
-        	}
-        	else {
+        	} else {
         		playerOnTile = false;
         	}
         } 
