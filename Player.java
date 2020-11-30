@@ -136,68 +136,37 @@ public class Player {
 			int keyCode = e.getKeyCode();
 		    switch (keyCode) { 
 		        case KeyEvent.VK_UP:
-		        	//if current tiles open path = {X,TRUE,X,X}
-		        	//and above tiles open path = {TRUE,X,X,X} 
-		        	//where {up,down,left,right}
-		        	Tile upTile = Board.getTile(playerPosition[0], playerPosition[1] + 1);
-		        	Boolean[] upTileOpenPath = upTile.getOpenPath();
-		        	if ((currentTileOpenPath[0] = true) && (upTileOpenPath[1] = true)) {
-		        		if ((upTile.getOnFire().equals(true)) || (Board.playerOnTile(playerPosition[0], playerPosition[1] + 1) == true)) {
-		        			moved = false;
-		        		}
-		        		else {
-		        			//y = y + 1
-				        	playerPosition[1] = playerPosition[1] + 1;
-				        	moved = true;
-		        		}
-		        	}
+		        	movePlayer(currentTileOpenPath, playerPosition[0], playerPosition[1] + 1, 0, 1);
 		            break;
 		        case KeyEvent.VK_DOWN:
-		        	Tile downTile = Board.getTile(playerPosition[0], playerPosition[1] - 1);
-		        	Boolean[] downTileOpenPath = downTile.getOpenPath();
-		        	if ((currentTileOpenPath[1] = true) && (downTileOpenPath[0] = true)) {
-		        		if ((downTile.getOnFire().equals(true)) || (Board.playerOnTile(playerPosition[0], playerPosition[1] - 1) == true)) {
-		        			moved = false;
-		        		}
-		        		else {
-		        			//y = y - 1
-				        	playerPosition[1] = playerPosition[1] - 1;
-				        	moved = true;
-		        		}
-		        	}
+		        	movePlayer(currentTileOpenPath, playerPosition[0], playerPosition[1] - 1, 1, 0);
 		            break;
 		        case KeyEvent.VK_LEFT:
-		        	Tile leftTile = Board.getTile(playerPosition[0] - 1, playerPosition[1]);
-		        	Boolean[] leftTileOpenPath = leftTile.getOpenPath();
-		        	if ((currentTileOpenPath[2] = true) && (leftTileOpenPath[3] = true)) {
-		        		if ((leftTile.getOnFire().equals(true)) || (Board.playerOnTile(playerPosition[0] - 1, playerPosition[1]) == true)) {
-		        			moved = false;
-		        		}
-		        		else {
-		        			//x = x - 1
-				        	playerPosition[0] = playerPosition[0] - 1;
-				        	moved = true;
-		        		}
-		        	}
+		        	movePlayer(currentTileOpenPath, playerPosition[0] - 1, playerPosition[1], 2, 3);
 		            break;
 		        case KeyEvent.VK_RIGHT:
-		        	Tile rightTile = Board.getTile(playerPosition[0] + 1, playerPosition[1]);
-		        	Boolean[] rightTileOpenPath = rightTile.getOpenPath();
-		        	if ((currentTileOpenPath[3] = true) && (rightTileOpenPath[2] = true)) {
-		        		if ((rightTile.getOnFire().equals(true)) || (Board.playerOnTile(playerPosition[0] + 1, playerPosition[1]) == true)) {
-		        			moved = false;
-		        		}
-		        		else {
-		        			//x = x + 1
-				        	playerPosition[0] = playerPosition[0] + 1;
-				        	moved = true;
-		        		}
-		        	}
+		        	movePlayer(currentTileOpenPath, playerPosition[0] + 1, playerPosition[1], 3, 2);
 		            break;
 		     }
 		} while (moved == false);
 		
+	}
+	
+	public boolean movePlayer(Boolean[] currentTileOpenPath, int x, int y, int currentPath, int nextPath) {
+		Boolean moved = false;
+		Tile nextTile = Board.getTile(x, y);
+    	Boolean[] nextTileOpenPath = nextTile.getOpenPath();
 
+    	if ((currentTileOpenPath[currentPath] = true) && (nextTileOpenPath[nextPath] = true)) {
+    		if ((nextTile.getOnFire().equals(true)) || (Board.playerOnTile(x, y) == true)) {
+    			moved = false;
+    		} else {
+    			playerPosition[0] = x;
+	        	playerPosition[1] = y;
+	        	moved = true;
+    		}
+    	}
+		return moved;
 	}
 	
 }
