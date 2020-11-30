@@ -158,7 +158,7 @@ public class Player {
     	Boolean[] nextTileOpenPath = nextTile.getOpenPath();
 
     	if ((currentTileOpenPath[currentPath] = true) && (nextTileOpenPath[nextPath] = true)) {
-    		if ((nextTile.getOnFire().equals(true)) || (Board.playerOnTile(x, y) == true)) {
+    		if ((nextTile.getOnFire().equals(true)) || (checkForPlayers(x, y) == true)) {
     			moved = false;
     		} else {
     			playerPosition[0] = x;
@@ -167,6 +167,28 @@ public class Player {
     		}
     	}
 		return moved;
+	}
+	
+	public boolean checkForPlayers(int x, int y) {
+		boolean playerOnTile = false;
+		Player players[] = Board.getPlayers(); 
+		int i;
+  
+        for (i = 0; i < players.length; i++) { 
+        	int otherPlayerPosition[] = players[i].getPlayerPosition();
+        	if ((otherPlayerPosition[0] == x && otherPlayerPosition[1] == y + 1) ||
+        			(otherPlayerPosition[0] == x && otherPlayerPosition[1] == y - 1) ||
+        			(otherPlayerPosition[0] == x + 1 && otherPlayerPosition[1] == y) ||
+        			(otherPlayerPosition[0] == x - 1 && otherPlayerPosition[1] == y)) {
+        		
+        		playerOnTile = true;
+        	}
+        	else {
+        		playerOnTile = false;
+        	}
+        } 
+		
+		return playerOnTile;
 	}
 	
 }
